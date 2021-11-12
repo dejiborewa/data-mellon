@@ -6,25 +6,25 @@ Chart.register(...registerables);
 const Container = styled.div`
     &.loader {
         width: 100%;
-        height: 100vh;
+        height: 80vh;
     }
 
     &.chart-container {
         width: 100%;
-        height: 100vh;
-        padding: 1em;
+        padding: 0 1em;
     }
 
     &.chart {
         width: 100%;
-        margin: 2em 0;
+        margin-bottom: 2em;
     }
 
     &.loading {
         width: 100%;
         height: 100%;
-        border: 3px solid #008000;
-        border-color: #008000 transparent #008000 transparent;
+        border: 3px solid var(--color-main);
+        border-color: var(--color-main) transparent var(--color-main)
+            transparent;
         border-radius: 50%;
         animation: spin 1s linear infinite;
 
@@ -39,13 +39,23 @@ const Container = styled.div`
         }
     }
 
-    @media and (min-width: 768px) {
+    @media (min-width: 768px) {
         &.chart-container {
-            padding: 1em;
+            padding: 0 5em;
         }
 
         &.chart {
-            margin: 2em 0;
+            margin-bottom: 5em;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        &.chart-container {
+            padding: 0 10em;
+        }
+
+        &.chart {
+            margin-bottom: 10em;
         }
     }
 `;

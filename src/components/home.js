@@ -3,19 +3,13 @@ import { useHistory } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import styled from "styled-components";
 
-const Main = styled.main`
-    padding: 1em;
-    width: 100%;
-    height: 100vh;
-`;
-
 const Section = styled.section`
     &.top {
         height: 70%;
     }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
     &.charts {
         display: flex;
     }
@@ -26,7 +20,7 @@ const Header = styled.h1`
 `;
 
 const Button = styled.button`
-    background: #008000;
+    background: var(--color-main);
     color: white;
     outline: none;
     border: none;
@@ -37,7 +31,7 @@ const Button = styled.button`
     cursor: pointer;
 
     &:hover {
-        background: #38b000;
+        background: #008000;
     }
 `;
 
@@ -47,7 +41,7 @@ const Home = () => {
     const history = useHistory();
 
     return (
-        <Main>
+        <>
             <Section className="top">
                 <Container>
                     <Header>Welcome to SkyHigh Marketing</Header>
@@ -67,7 +61,7 @@ const Home = () => {
                     </Container>
                 </Fade>
             </Section>
-        </Main>
+        </>
     );
 };
 
