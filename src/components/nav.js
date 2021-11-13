@@ -73,7 +73,7 @@ const BoxContainer = styled(Container)`
     color: white;
     border-radius: 8px;
     z-index: 4;
-    box-shadow: 1px 1 px 4px 3px #008000;
+    box-shadow: 1px 1px px 4px 3px #008000;
 `;
 
 const BoxItem = styled(Container)`

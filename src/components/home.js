@@ -16,15 +16,32 @@ export const Container = styled.div`
         gap: 1em;
     }
 
+    &.backgroundText {
+        padding-right: 5em;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+    }
+
     @media (min-width: 768px) {
         &.charts {
             display: flex;
+        }
+
+        &.backgroundText {
+            padding-right: 10em;
         }
     }
 `;
 
 const Header = styled.h1`
     font-size: 40px;
+    margin-bottom: .3em;
+
+    @media (min-width: 768px) {
+        font-size: 50px;
+    }
 `;
 
 const Button = styled.button`
@@ -32,7 +49,7 @@ const Button = styled.button`
     color: white;
     outline: none;
     border: none;
-    padding: 0.7em 1.2em;
+    padding: 0.7em;
     margin-right: 5px;
     border-radius: 5px;
     font-family: inherit;
@@ -41,10 +58,19 @@ const Button = styled.button`
     &:hover {
         background: #008000;
     }
+
+    @media (min-width: 768px) {
+        padding: 0.7em 1.2em;
+    }
 `;
 
 const Text = styled.p`
-    font-size: 24px;
+    margin-top: 0;
+    font-size: 16px;
+
+    @media (min-width: 768px) {
+        font-size: 20px;
+    }
 `;
 
 const Home = () => {
@@ -53,7 +79,7 @@ const Home = () => {
     return (
         <>
             <Section className="top">
-                <Container className="top-text">
+                <Container className="backgroundText">
                     <Header>Welcome to SkyHigh Marketing</Header>
                     <Text>Visualizate our data with the charts below</Text>
                 </Container>

@@ -18,8 +18,6 @@ const StackedBar = () => {
         return profits;
     };
 
-    
-
     useEffect(() => {
         const fetchData = async () => {
             const options = {
@@ -50,96 +48,55 @@ const StackedBar = () => {
                 (i) => Number(i["Order Date"].substr(5)) === 2016
             );
 
-            const data_2017 = data.filter(
-                (i) => Number(i["Order Date"].substr(5)) === 2017
-            );
-
             const ctx = document.getElementById("stackedBar").getContext("2d");
 
             new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: ["Office Supplies", "Furniture", "Technology"],
+                    labels: [2014, 2015, 2016],
                     datasets: [
                         {
-                            
-                            label: [2014, 2015, 2016, 2017],
+                            label: "Office Supplies",
                             data: [
                                 getSalesPerCategory(
                                     data_2014,
                                     "Office Supplies"
                                 ),
+                                getSalesPerCategory(data_2014, "Furniture"),
+                                getSalesPerCategory(data_2014, "Technology"),
+                            ],
+                            backgroundColor: ["rgba(255, 99, 132)"],
+                            borderColor: ["rgb(255, 99, 132)"],
+                            borderWidth: 1,
+                        },
+
+                        {
+                            label: "Furniture",
+                            data: [
                                 getSalesPerCategory(
                                     data_2015,
                                     "Office Supplies"
                                 ),
+                                getSalesPerCategory(data_2015, "Furniture"),
+                                getSalesPerCategory(data_2015, "Technology"),
+                            ],
+                            backgroundColor: ["rgba(255, 159, 64)"],
+                            borderColor: ["rgb(255, 159, 64)"],
+                            borderWidth: 1,
+                        },
+
+                        {
+                            label: "Technology",
+                            data: [
                                 getSalesPerCategory(
                                     data_2016,
                                     "Office Supplies"
                                 ),
-                                getSalesPerCategory(
-                                    data_2017,
-                                    "Office Supplies"
-                                ),
-                            ],
-                            backgroundColor: [
-                                "rgba(255, 99, 132)",
-                                "rgba(255, 159, 64)",
-                                "rgba(255, 205, 86)",
-                                "rgba(75, 192, 192)",
-                            ],
-                            borderColor: [
-                                "rgb(255, 99, 132)",
-                                "rgb(255, 159, 64)",
-                                "rgb(255, 205, 86)",
-                                "rgb(75, 192, 192)",
-                            ],
-                            borderWidth: 1,
-                        },
-
-                        {
-                            label: [2014, 2015, 2016, 2017],
-                            data: [
-                                getSalesPerCategory(data_2014, "Furniture"),
-                                getSalesPerCategory(data_2015, "Furniture"),
                                 getSalesPerCategory(data_2016, "Furniture"),
-                                getSalesPerCategory(data_2017, "Furniture"),
-                            ],
-                            backgroundColor: [
-                                "rgba(255, 99, 132)",
-                                "rgba(255, 159, 64)",
-                                "rgba(255, 205, 86)",
-                                "rgba(75, 192, 192)",
-                            ],
-                            borderColor: [
-                                "rgb(255, 99, 132)",
-                                "rgb(255, 159, 64)",
-                                "rgb(255, 205, 86)",
-                                "rgb(75, 192, 192)",
-                            ],
-                            borderWidth: 1,
-                        },
-
-                        {
-                            label: [2014, 2015, 2016, 2017],
-                            data: [
-                                getSalesPerCategory(data_2014, "Technology"),
-                                getSalesPerCategory(data_2015, "Technology"),
                                 getSalesPerCategory(data_2016, "Technology"),
-                                getSalesPerCategory(data_2017, "Technology"),
                             ],
-                            backgroundColor: [
-                                "rgba(255, 99, 132)",
-                                "rgba(255, 159, 64)",
-                                "rgba(255, 205, 86)",
-                                "rgba(75, 192, 192)",
-                            ],
-                            borderColor: [
-                                "rgb(255, 99, 132)",
-                                "rgb(255, 159, 64)",
-                                "rgb(255, 205, 86)",
-                                "rgb(75, 192, 192)",
-                            ],
+                            backgroundColor: ["rgb(75, 192, 192)"],
+                            borderColor: ["rgb(75, 192, 192)"],
                             borderWidth: 1,
                         },
                     ],
