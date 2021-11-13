@@ -69,6 +69,7 @@ const BoxContainer = styled.div`
     position: absolute;
     top: 90px;
     right: 20px;
+    width: 225px;
     background: var(--color-main);
     color: white;
     border-radius: 8px;

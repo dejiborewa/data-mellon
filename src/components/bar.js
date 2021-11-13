@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Nav from "./nav";
+import { Text } from "./pie";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
@@ -205,10 +206,12 @@ function Bar() {
             <Nav />
             <Container className="chart-container">
                 <Container className="chart">
+                    <Text>Total Sales in each year</Text>
                     <canvas id="barChart" />
                 </Container>
 
                 <Container className="chart">
+                    <Text>Total Profit in each year</Text>
                     <canvas id="barChart2" />
                 </Container>
             </Container>
