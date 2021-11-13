@@ -11,12 +11,20 @@ const Section = styled.section`
 
 export const Container = styled.div`
     &.charts {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1em;
+    }
+
+    @media (min-width: 768px) {
+        &.charts {
+            display: flex;
+        }
     }
 `;
 
 const Header = styled.h1`
-    font-size: 28px;
+    font-size: 40px;
 `;
 
 const Button = styled.button`
@@ -24,7 +32,7 @@ const Button = styled.button`
     color: white;
     outline: none;
     border: none;
-    padding: 0.7em 1.3em;
+    padding: 0.7em 1.2em;
     margin-right: 5px;
     border-radius: 5px;
     font-family: inherit;
@@ -35,7 +43,9 @@ const Button = styled.button`
     }
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+    font-size: 24px;
+`;
 
 const Home = () => {
     const history = useHistory();
@@ -43,7 +53,7 @@ const Home = () => {
     return (
         <>
             <Section className="top">
-                <Container>
+                <Container className="top-text">
                     <Header>Welcome to SkyHigh Marketing</Header>
                     <Text>Visualizate our data with the charts below</Text>
                 </Container>
@@ -57,6 +67,18 @@ const Home = () => {
 
                         <Button onClick={() => history.push("/pie-charts")}>
                             Pie Charts
+                        </Button>
+
+                        <Button onClick={() => history.push("/time-series")}>
+                            Time Series
+                        </Button>
+
+                        <Button onClick={() => history.push("/stacked-bar")}>
+                            Stacked Bars
+                        </Button>
+
+                        <Button onClick={() => history.push("/tables")}>
+                            Tables
                         </Button>
                     </Container>
                 </Fade>

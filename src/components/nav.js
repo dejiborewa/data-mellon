@@ -27,7 +27,7 @@ const NavBarText = styled(Text)`
 
 const TextSmall = styled.p`
     display: inline;
-    margin-left: 5px;
+    margin-left: 7px;
     vertical-align: top;
 `;
 
@@ -67,11 +67,13 @@ const MenuItem = styled(Container)`
 
 const BoxContainer = styled(Container)`
     position: absolute;
-    top: 85px;
+    top: 90px;
     right: 20px;
     background: var(--color-main);
     color: white;
     border-radius: 8px;
+    z-index: 4;
+    box-shadow: 1px 1 px 4px 3px #008000;
 `;
 
 const BoxItem = styled(Container)`
@@ -82,6 +84,12 @@ const BoxItem = styled(Container)`
     &:hover {
         background: #008000;
     }
+`;
+
+const CancelContainer = styled(Container)`
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1em;
 `;
 
 const Box = ({ setIsBoxOpen }) => {
@@ -95,6 +103,21 @@ const Box = ({ setIsBoxOpen }) => {
     const handlePieClick = () => {
         setIsBoxOpen(false);
         history.push("/pie-charts");
+    };
+
+    const handleTimeClick = () => {
+        setIsBoxOpen(false);
+        history.push("/pie-charts");
+    };
+
+    const handleStackedClick = () => {
+        setIsBoxOpen(false);
+        history.push("/stacked-bar");
+    };
+
+    const handleTableClick = () => {
+        setIsBoxOpen(false);
+        history.push("/tables");
     };
 
     return (
@@ -113,7 +136,7 @@ const Box = ({ setIsBoxOpen }) => {
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth="1"
+                        strokeWidth="2"
                         d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                     ></path>
                 </svg>
@@ -133,17 +156,77 @@ const Box = ({ setIsBoxOpen }) => {
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth="1"
+                        strokeWidth="2"
                         d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
                     ></path>
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth="1"
+                        strokeWidth="2"
                         d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
                     ></path>
                 </svg>
                 <TextSmall>Pie Chart</TextSmall>
+            </BoxItem>
+            <BoxItem onClick={handleTimeClick}>
+                <svg
+                    style={{
+                        display: "inline",
+                        width: "16px",
+                    }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                    ></path>
+                </svg>
+                <TextSmall>Time Series</TextSmall>
+            </BoxItem>
+            <BoxItem onClick={handleStackedClick}>
+                <svg
+                    style={{
+                        display: "inline",
+                        width: "16px",
+                    }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                </svg>
+                <TextSmall>Stacked Bars</TextSmall>
+            </BoxItem>
+            <BoxItem onClick={handleTableClick}>
+                <svg
+                    style={{
+                        display: "inline",
+                        width: "16px",
+                    }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    ></path>
+                </svg>
+                <TextSmall>Tables</TextSmall>
             </BoxItem>
         </BoxContainer>
     );
@@ -162,6 +245,21 @@ const ChartDropdown = ({ setIsModalOpen }) => {
         history.push("/pie-charts");
     };
 
+    const handleTimeClick = () => {
+        setIsModalOpen(false);
+        history.push("/time-series");
+    };
+
+    const handleStackedClick = () => {
+        setIsModalOpen(false);
+        history.push("/stacked-bar");
+    };
+
+    const handleTableClick = () => {
+        setIsModalOpen(false);
+        history.push("/tables");
+    };
+
     return (
         <Dropdown>
             <MenuItem onClick={handleBarClick}>
@@ -178,7 +276,7 @@ const ChartDropdown = ({ setIsModalOpen }) => {
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth="1"
+                        strokeWidth="2"
                         d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                     ></path>
                 </svg>
@@ -198,17 +296,77 @@ const ChartDropdown = ({ setIsModalOpen }) => {
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth="1"
+                        strokeWidth="2"
                         d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
                     ></path>
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth="1"
+                        strokeWidth="2"
                         d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
                     ></path>
                 </svg>
                 <TextSmall>Pie Chart</TextSmall>
+            </MenuItem>
+            <MenuItem onClick={handleTimeClick}>
+                <svg
+                    style={{
+                        display: "inline",
+                        width: "16px",
+                    }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                    ></path>
+                </svg>
+                <TextSmall>Time Series</TextSmall>
+            </MenuItem>
+            <MenuItem onClick={handleStackedClick}>
+                <svg
+                    style={{
+                        display: "inline",
+                        width: "16px",
+                    }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                </svg>
+                <TextSmall>Stacked Bars</TextSmall>
+            </MenuItem>
+            <MenuItem onClick={handleTableClick}>
+                <svg
+                    style={{
+                        display: "inline",
+                        width: "16px",
+                    }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    ></path>
+                </svg>
+                <TextSmall>Tables</TextSmall>
             </MenuItem>
         </Dropdown>
     );
@@ -230,7 +388,27 @@ const NavModal = ({ setIsModalOpen }) => {
     return (
         <Modal>
             <CloseModal onClick={() => setIsModalOpen(false)} />
+
             <Menu>
+                <CancelContainer onClick={() => setIsModalOpen(false)}>
+                    <svg
+                        style={{
+                            display: "inline",
+                            width: "24px",
+                        }}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                    </svg>
+                </CancelContainer>
                 <MenuItem>
                     <svg
                         style={{
@@ -245,7 +423,7 @@ const NavModal = ({ setIsModalOpen }) => {
                         <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            strokeWidth="1"
+                            strokeWidth="2"
                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                         ></path>
                     </svg>
@@ -263,7 +441,7 @@ const NavModal = ({ setIsModalOpen }) => {
                         <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            strokeWidth="1"
+                            strokeWidth="2"
                             d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
                         ></path>
                     </svg>

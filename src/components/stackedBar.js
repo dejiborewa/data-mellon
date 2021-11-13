@@ -1,85 +1,24 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import { Container, Loader } from "./bar";
+import { Text } from "./pie";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
-export const Container = styled.div`
-    &.loader {
-        width: 100%;
-        height: 80vh;
-    }
-
-    &.chart-container {
-        width: 100%;
-        padding: 0 1em;
-    }
-
-    &.chart {
-        width: 100%;
-        margin-bottom: 2em;
-    }
-
-    &.loading {
-        width: 100%;
-        height: 100%;
-        border: 3px solid var(--color-main);
-        border-color: var(--color-main) transparent var(--color-main)
-            transparent;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    }
-
-    @media (min-width: 768px) {
-        &.chart-container {
-            padding: 0 5em;
-        }
-
-        &.chart {
-            margin-bottom: 5em;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        &.chart-container {
-            padding: 0 20em;
-        }
-
-        &.chart {
-            margin-bottom: 10em;
-        }
-    }
-`;
-
-export const LoaderInner = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 3em;
-    height: 3em;
-    transform: translate(-50%, -50%);
-`;
-
-function Bar() {
+const StackedBar = () => {
     const [data, setData] = useState(null);
 
-    const getTotal = (data, params) => {
-        let total = 0;
+    const getSalesPerCategory = (data, category) => {
+        let profits = 0;
         for (let i = 0; i < data.length; i++) {
-            total = total + Number(data[i][`${params}`]);
+            if (data[i]["Category"] === category) {
+                profits = profits + Number(data[i]["Sales"]);
+            }
         }
 
-        return total;
+        return profits;
     };
+
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -102,31 +41,46 @@ function Bar() {
             const data_2014 = data.filter(
                 (i) => Number(i["Order Date"].substr(5)) === 2014
             );
+
             const data_2015 = data.filter(
                 (i) => Number(i["Order Date"].substr(5)) === 2015
             );
+
             const data_2016 = data.filter(
                 (i) => Number(i["Order Date"].substr(5)) === 2016
             );
+
             const data_2017 = data.filter(
                 (i) => Number(i["Order Date"].substr(5)) === 2017
             );
 
-            const ctx = document.getElementById("barChart").getContext("2d");
-            const ctx2 = document.getElementById("barChart2").getContext("2d");
+            const ctx = document.getElementById("stackedBar").getContext("2d");
 
             new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: [2014, 2015, 2016, 2017],
+                    labels: ["Office Supplies", "Furniture", "Technology"],
                     datasets: [
                         {
-                            label: "Total Sales in each year",
+                            
+                            label: [2014, 2015, 2016, 2017],
                             data: [
-                                getTotal(data_2014, "Sales"),
-                                getTotal(data_2015, "Sales"),
-                                getTotal(data_2016, "Sales"),
-                                getTotal(data_2017, "Sales"),
+                                getSalesPerCategory(
+                                    data_2014,
+                                    "Office Supplies"
+                                ),
+                                getSalesPerCategory(
+                                    data_2015,
+                                    "Office Supplies"
+                                ),
+                                getSalesPerCategory(
+                                    data_2016,
+                                    "Office Supplies"
+                                ),
+                                getSalesPerCategory(
+                                    data_2017,
+                                    "Office Supplies"
+                                ),
                             ],
                             backgroundColor: [
                                 "rgba(255, 99, 132)",
@@ -142,25 +96,37 @@ function Bar() {
                             ],
                             borderWidth: 1,
                         },
-                    ],
-                },
-                options: {
-                    responsive: true,
-                },
-            });
 
-            new Chart(ctx2, {
-                type: "bar",
-                data: {
-                    labels: [2014, 2015, 2016, 2017],
-                    datasets: [
                         {
-                            label: "Total Profit in each year",
+                            label: [2014, 2015, 2016, 2017],
                             data: [
-                                getTotal(data_2014, "Profit"),
-                                getTotal(data_2015, "Profit"),
-                                getTotal(data_2016, "Profit"),
-                                getTotal(data_2017, "Profit"),
+                                getSalesPerCategory(data_2014, "Furniture"),
+                                getSalesPerCategory(data_2015, "Furniture"),
+                                getSalesPerCategory(data_2016, "Furniture"),
+                                getSalesPerCategory(data_2017, "Furniture"),
+                            ],
+                            backgroundColor: [
+                                "rgba(255, 99, 132)",
+                                "rgba(255, 159, 64)",
+                                "rgba(255, 205, 86)",
+                                "rgba(75, 192, 192)",
+                            ],
+                            borderColor: [
+                                "rgb(255, 99, 132)",
+                                "rgb(255, 159, 64)",
+                                "rgb(255, 205, 86)",
+                                "rgb(75, 192, 192)",
+                            ],
+                            borderWidth: 1,
+                        },
+
+                        {
+                            label: [2014, 2015, 2016, 2017],
+                            data: [
+                                getSalesPerCategory(data_2014, "Technology"),
+                                getSalesPerCategory(data_2015, "Technology"),
+                                getSalesPerCategory(data_2016, "Technology"),
+                                getSalesPerCategory(data_2017, "Technology"),
                             ],
                             backgroundColor: [
                                 "rgba(255, 99, 132)",
@@ -180,6 +146,14 @@ function Bar() {
                 },
                 options: {
                     responsive: true,
+                    scales: {
+                        x: {
+                            stacked: true,
+                        },
+                        y: {
+                            stacked: true,
+                        },
+                    },
                 },
             });
         };
@@ -196,24 +170,11 @@ function Bar() {
     return (
         <Container className="chart-container">
             <Container className="chart">
-                <canvas id="barChart" />
+                <Text>Sales per Category</Text>
+                <canvas id="stackedBar" />
             </Container>
-
-            <Container className="chart">
-                <canvas id="barChart2" />
-            </Container>
-        </Container>
-    );
-}
-
-export const Loader = () => {
-    return (
-        <Container className="loader">
-            <LoaderInner>
-                <Container className="loading"></Container>
-            </LoaderInner>
         </Container>
     );
 };
 
-export default Bar;
+export default StackedBar;
