@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Loader } from "./bar";
+import Nav from "./nav";
 import { Text } from "./pie";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
@@ -245,25 +246,28 @@ const TimeSeries = () => {
     }
 
     return (
-        <Container className="chart-container">
-            <Container className="chart">
-                <Text>Profit time series, 2014</Text>
-                <canvas id="pieChart" />
-            </Container>
+        <Container className="app-container">
+            <Nav />
+            <Container className="chart-container">
+                <Container className="chart">
+                    <Text>Profit time series, 2014</Text>
+                    <canvas id="pieChart" />
+                </Container>
 
-            <Container className="chart">
-                <Text>Profit time series, 2015</Text>
-                <canvas id="pieChart2" />
-            </Container>
+                <Container className="chart">
+                    <Text>Profit time series, 2015</Text>
+                    <canvas id="pieChart2" />
+                </Container>
 
-            <Container className="chart">
-                <Text>Profit time series, 2016</Text>
-                <canvas id="pieChart3" />
-            </Container>
+                <Container className="chart">
+                    <Text>Profit time series, 2016</Text>
+                    <canvas id="pieChart3" />
+                </Container>
 
-            <Container className="chart">
-                <Text>Profit time series, 2017</Text>
-                <canvas id="pieChart4" />
+                <Container className="chart">
+                    <Text>Profit time series, 2017</Text>
+                    <canvas id="pieChart4" />
+                </Container>
             </Container>
         </Container>
     );

@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Nav from "./nav";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
 export const Container = styled.div`
+    &.app-container {
+        padding: 1em;
+    }
+
     &.loader {
         width: 100%;
         height: 80vh;
     }
 
     &.chart-container {
-        width: 100%;
         padding: 0 1em;
     }
 
     &.chart {
-        width: 100%;
         margin-bottom: 2em;
     }
 
@@ -40,6 +43,10 @@ export const Container = styled.div`
     }
 
     @media (min-width: 768px) {
+        &.app-container {
+            padding: 2em;
+        }
+
         &.chart-container {
             padding: 0 5em;
         }
@@ -51,7 +58,7 @@ export const Container = styled.div`
 
     @media (min-width: 1024px) {
         &.chart-container {
-            padding: 0 20em;
+            padding: 0 30em;
         }
 
         &.chart {
@@ -194,13 +201,16 @@ function Bar() {
     }
 
     return (
-        <Container className="chart-container">
-            <Container className="chart">
-                <canvas id="barChart" />
-            </Container>
+        <Container className="app-container">
+            <Nav />
+            <Container className="chart-container">
+                <Container className="chart">
+                    <canvas id="barChart" />
+                </Container>
 
-            <Container className="chart">
-                <canvas id="barChart2" />
+                <Container className="chart">
+                    <canvas id="barChart2" />
+                </Container>
             </Container>
         </Container>
     );
@@ -208,10 +218,13 @@ function Bar() {
 
 export const Loader = () => {
     return (
-        <Container className="loader">
-            <LoaderInner>
-                <Container className="loading"></Container>
-            </LoaderInner>
+        <Container className="app-container">
+            <Nav />
+            <Container className="loader">
+                <LoaderInner>
+                    <Container className="loading"></Container>
+                </LoaderInner>
+            </Container>
         </Container>
     );
 };

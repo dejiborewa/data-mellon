@@ -2,6 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import styled from "styled-components";
+import bgMobile from "./bg-mobile.jpg";
+import Nav from "./nav";
 
 const Section = styled.section`
     &.top {
@@ -10,7 +12,16 @@ const Section = styled.section`
 `;
 
 export const Container = styled.div`
-    &.charts {
+    &.main {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(#f2f4f3 5%, rgba(0, 0, 0, 0.7)),
+            url(${bgMobile});
+        background-size: cover;
+        padding: 1em;
+    }
+
+    &.charts-list {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1em;
@@ -25,7 +36,11 @@ export const Container = styled.div`
     }
 
     @media (min-width: 768px) {
-        &.charts {
+        &.main {
+            padding: 2em;
+        }
+
+        &.charts-list {
             display: flex;
         }
 
@@ -37,7 +52,7 @@ export const Container = styled.div`
 
 const Header = styled.h1`
     font-size: 40px;
-    margin-bottom: .3em;
+    margin-bottom: 0.3em;
 
     @media (min-width: 768px) {
         font-size: 50px;
@@ -67,6 +82,7 @@ const Button = styled.button`
 const Text = styled.p`
     margin-top: 0;
     font-size: 16px;
+    padding-right: 3em;
 
     @media (min-width: 768px) {
         font-size: 20px;
@@ -77,7 +93,8 @@ const Home = () => {
     const history = useHistory();
 
     return (
-        <>
+        <Container className="main">
+            <Nav />
             <Section className="top">
                 <Container className="backgroundText">
                     <Header>Welcome to SkyHigh Marketing</Header>
@@ -86,7 +103,7 @@ const Home = () => {
             </Section>
             <Section className="bottom">
                 <Fade top>
-                    <Container className="charts">
+                    <Container className="charts-list">
                         <Button onClick={() => history.push("/bar-charts")}>
                             Bar Charts
                         </Button>
@@ -109,7 +126,7 @@ const Home = () => {
                     </Container>
                 </Fade>
             </Section>
-        </>
+        </Container>
     );
 };
 

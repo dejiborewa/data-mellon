@@ -31,7 +31,7 @@ const TextSmall = styled.p`
     vertical-align: top;
 `;
 
-const Modal = styled(Container)`
+const Modal = styled.div`
     display: flex;
     position: fixed;
     top: 0;
@@ -41,7 +41,7 @@ const Modal = styled(Container)`
     z-index: 3;
 `;
 
-const Menu = styled(Container)`
+const Menu = styled.div`
     min-width: 70%;
     height: 100%;
     padding: 1em;
@@ -49,23 +49,23 @@ const Menu = styled(Container)`
     color: white;
 `;
 
-const CloseModal = styled(Container)`
+const CloseModal = styled.div`
     min-width: 30%;
     min-height: 100vh;
     background: #ccc;
     opacity: 0.5;
 `;
 
-const Dropdown = styled(Container)`
+const Dropdown = styled.div`
     position: relative;
     left: 1em;
 `;
 
-const MenuItem = styled(Container)`
+const MenuItem = styled.div`
     margin: 1em 0;
 `;
 
-const BoxContainer = styled(Container)`
+const BoxContainer = styled.div`
     position: absolute;
     top: 90px;
     right: 20px;
@@ -76,7 +76,7 @@ const BoxContainer = styled(Container)`
     box-shadow: 1px 1px px 4px 3px #008000;
 `;
 
-const BoxItem = styled(Container)`
+const BoxItem = styled.div`
     padding: 1em 2em 1em 1em;
     cursor: pointer;
     border-radius: 8px;
@@ -86,7 +86,7 @@ const BoxItem = styled(Container)`
     }
 `;
 
-const CancelContainer = styled(Container)`
+const CancelContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-bottom: 1em;
@@ -107,7 +107,7 @@ const Box = ({ setIsBoxOpen }) => {
 
     const handleTimeClick = () => {
         setIsBoxOpen(false);
-        history.push("/pie-charts");
+        history.push("/time-series");
     };
 
     const handleStackedClick = () => {

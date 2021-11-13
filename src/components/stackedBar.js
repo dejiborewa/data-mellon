@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Nav from "./nav";
 import { Container, Loader } from "./bar";
 import { Text } from "./pie";
 import { Chart, registerables } from "chart.js";
@@ -125,10 +126,13 @@ const StackedBar = () => {
     }
 
     return (
-        <Container className="chart-container">
-            <Container className="chart">
-                <Text>Sales per Category</Text>
-                <canvas id="stackedBar" />
+        <Container className="app-container">
+            <Nav />
+            <Container className="chart-container">
+                <Container className="chart">
+                    <Text>Sales per Category</Text>
+                    <canvas id="stackedBar" />
+                </Container>
             </Container>
         </Container>
     );
